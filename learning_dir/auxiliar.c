@@ -1,12 +1,17 @@
 #include "def.h"
 
-void initializeaza_ponderi(float *matrice, int intrari, int iesiri)
+void initializeaza_ponderi(float **matrice, int intrari, int iesiri)
 {
     float limita = sqrtf(6.0f / (float)intrari);
-    for (int i = 0; i < intrari * iesiri; i++) {
-        float rand_0_1 = (float)rand() / (float)RAND_MAX;
-        float rand_prostit = rand_0_1 * 2.0f - 1.0f;
-        matrice[i] = rand_prostit * limita;
+    
+    
+    for (int i = 0; i < iesiri; i++) {
+        for (int j = 0; j < intrari; j++) { 
+            float rand_0_1 = (float)rand() / (float)RAND_MAX;
+            float rand_prostit = rand_0_1 * 2.0f - 1.0f;
+            
+            matrice[i][j] = rand_prostit * limita;
+        }
     }
 }
 
@@ -43,8 +48,16 @@ void InitEverything(chenare_t chenare, butt_t butoane)
     strcpy(butoane[2].s, "+500");
     strcpy(butoane[3].s, "+1000");
     strcpy(butoane[4].s, "Learn!");
-    butoane[5].val = 10000;
+    butoane[5].val = 0;
     char buff[30];
     sprintf(buff, "%d", butoane[5].val);
     strcpy(butoane[5].s, buff);
+    butoane[6].rec.x = SCREEN_W / 2;
+    butoane[6].rec.y = CHENAR_Y + INALTIME / 2 - 80;
+    butoane[7].rec.x = SCREEN_W / 2;
+    butoane[7].rec.y = CHENAR_Y + INALTIME / 2 + 80;
+    butoane[6].val = 0;
+    butoane[7].val = 0;
+    strcpy(butoane[6].s, "Gen: 0");
+    strcpy(butoane[7].s, "Prob: NaN");
 }

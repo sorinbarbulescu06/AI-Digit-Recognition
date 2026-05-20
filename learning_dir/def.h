@@ -7,7 +7,6 @@
 
 #define LATIME 280
 #define INALTIME 280
-#define ITCOUNT 3000
 #define SCREEN_L 750
 #define SCREEN_W 1000
 #define CHENAR_X 100
@@ -29,11 +28,20 @@ typedef struct chenare{
 
 typedef struct butoane{
     Rectangle rec;
-    char s[15];
+    char s[25];
     int val;
+    float percentage;
 } butt_s, *butt_t;
 
 //aux.c
-void initializeaza_ponderi(float *matrice, int intrari, int iesiri);
+void initializeaza_ponderi(float **matrice, int intrari, int iesiri);
 void InitEverything(chenare_t chenare, butt_t butoane);
-void deseneaza(chenare_t chenare, butt_t butoane);
+void deseneaza(chenare_t chenare, butt_t butoane, Rectangle zona_desen, RenderTexture2D panza, int inteligent, int output, int gasit);
+
+//invatare.c
+float*** invatare(int itcount);
+
+//try.c
+float try(float ***p);
+
+int guess(float input[], float ***p);
